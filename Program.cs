@@ -12,13 +12,16 @@
 
 int[,] CreateArray(int a, int b) => new int[a, b];
 
-void RandomArray(int[,] NameArray)
+void FillRandomNumbers(int[,] matrix, int min = 1, int max = 10)
 {
-  for (int i = 0; i < NameArray.GetLength(0); i++)
+  int row = matrix.GetLength(0);
+  int columns = matrix.GetLength(1);
+
+  for (int i = 0; i < row; i++)
   {
-    for (int j = 0; j < NameArray.GetLength(1); j++)
+    for (int j = 0; j < columns; j++)
     {
-      NameArray[i, j] = new Random().Next(1, 1000);
+      matrix[i, j] = new Random().Next(min, max);
     }
   }
 }
@@ -53,7 +56,7 @@ int A = Input("Введите количество строк массива");
 int B = Input("Введите количество столбцов массива");
 
 int[,] matr = CreateArray(A, B);
-RandomArray(matr);
+FillRandomNumbers(matr);
 PrintArray(matr);
 NewArray(matr);
 Console.WriteLine();
