@@ -26,7 +26,7 @@ void FillRandomNumbers(int[,] matrix, int min = 1, int max = 10)
   }
 }
 
-void Print(int[,] matrix)
+void PrintBad(int[,] matrix)
 {
   int row = matrix.GetLength(0);
   int columns = matrix.GetLength(1);
@@ -60,8 +60,8 @@ int B = Input("Введите количество столбцов массив
 
 int[,] matr = CreateArray(A, B);
 FillRandomNumbers(matr);
-PrintArray(matr);
+PrintBad(matr);
 NewArray(matr);
 Console.WriteLine();
-PrintArray(matr);
+PrintBad(matr);
 
