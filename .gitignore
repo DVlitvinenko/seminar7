@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+replacing lines in table.txt
+source table.txt
+
 # User-specific files
 *.rsuser
 *.suo

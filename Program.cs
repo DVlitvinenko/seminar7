@@ -60,7 +60,12 @@ int columns = Input("Введите количество столбцов мас
 
 int[,] table = CreateArray(rows, columns);
 FillRandomNumbers(table);
-PrintBad(table);
+// PrintBad(table);
+string output = MatrixPrinter.PrintGood(table);
+Console.WriteLine(output);
+File.WriteAllText("source table.txt", output);
 ReplacingLinesIn(table);
-Console.WriteLine();
-PrintBad(table);
+// PrintBad(table);
+output = MatrixPrinter.PrintGood(table);
+Console.WriteLine(output);
+File.WriteAllText("replacing lines in table.txt", output);
