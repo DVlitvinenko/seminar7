@@ -1,7 +1,13 @@
 ﻿int Input(string msg)
 {
-  Console.Write(msg + " ");
-  return Convert.ToInt32(Console.ReadLine());
+  int flag = false;
+  int value = 0;
+  while (!flag)
+  {
+    Console.Write(msg + " ");
+    flag = int.TryParse(Console.ReadLine(), out value);
+  }
+  return value;
 }
 
 int[,] CreateArray(int a, int b)
