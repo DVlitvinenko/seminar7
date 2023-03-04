@@ -10,11 +10,7 @@
   return value;
 }
 
-int[,] CreateArray(int a, int b)
-{
-  int[,] matrix = new int[a, b];
-  return matrix;
-}
+int[,] CreateArray(int a, int b) => new int[a, b];
 
 void RandomArray(int[,] NameArray)
 {
