@@ -1,60 +1,71 @@
 ﻿int Input(string msg)
 {
+  bool flag = false;
+  int value = 0;
+  while (!flag)
+  {
     Console.Write(msg + " ");
-    return Convert.ToInt32(Console.ReadLine());
+    flag = int.TryParse(Console.ReadLine(), out value);
+  }
+  return value;
 }
 
-int[,] CreateArray(int a, int b)
-{
-    int[,] matrix = new int[a, b];
-    return matrix;
-}
+int[,] CreateArray(int a, int b) => new int[a, b];
 
-void RandomArray(int[,] NameArray)
+void FillRandomNumbers(int[,] matrix, int min = 1, int max = 10)
 {
-    for (int i = 0; i < NameArray.GetLength(0); i++)
+  int row = matrix.GetLength(0);
+  int columns = matrix.GetLength(1);
+
+  for (int i = 0; i < row; i++)
+  {
+    for (int j = 0; j < columns; j++)
     {
-        for (int j = 0; j < NameArray.GetLength(1); j++)
-        {
-            NameArray[i, j] = new Random().Next(1, 1000);
-        }
+      matrix[i, j] = new Random().Next(min, max);
     }
+  }
 }
 
-void PrintArray(int[,] NameArray)
+void PrintBad(int[,] matrix)
 {
-    for (int i = 0; i < NameArray.GetLength(0); i++)
+  int row = matrix.GetLength(0);
+  int columns = matrix.GetLength(1);
+
+  for (int i = 0; i < row; i++)
+  {
+    for (int j = 0; j < columns; j++)
     {
-        for (int j = 0; j < NameArray.GetLength(1); j++)
-        {
-            Console.Write(NameArray[i, j] + " ");
-        }
-        Console.WriteLine();
+      Console.Write($"{matrix[i, j],5} ");
     }
+    Console.WriteLine();
+  }
 }
 
-void NewArray (int [,] NameArray)
-        {
-            int i, j, temp;
-            int n = NameArray.GetLength(0); // кол-во строк
-            int m = NameArray.GetLength(1); // кол-во столбцов
-            
-            for (j = 0; j < m; j++) // перебираем столбцы
-            {
-                temp=NameArray[0, j];
-                NameArray[0, j]=NameArray[n - 1, j];
-                NameArray[n - 1, j] = temp;
-            }
-            
-        }
+void ReplacingLinesIn(int[,] matrix)
+{
+  int temp;
+  int lastIndexRow = matrix.GetLength(0) - 1;
+  int columns = matrix.GetLength(1);
 
-int A = Input("Введите количество строк массива");
-int B = Input("Введите количество столбцов массива");
+  for (int i = 0; i < columns; i++)
+  {
+    temp = matrix[0, i];
+    matrix[0, i] = matrix[lastIndexRow, i];
+    matrix[lastIndexRow, i] = temp;
+  }
+}
 
-int[,] matr = CreateArray(A, B);
-RandomArray(matr);
-PrintArray(matr);
-NewArray (matr);
-Console.WriteLine();
-PrintArray(matr);
+int rows = Input("Введите количество строк массива");
+int columns = Input("Введите количество столбцов массива");
 
+int[,] table = CreateArray(rows, columns);
+FillRandomNumbers(table);
+// PrintBad(table);
+string output = MatrixPrinter.PrintGood(table);
+Console.WriteLine(output);
+File.WriteAllText("source table.txt", output);
+ReplacingLinesIn(table);
+// PrintBad(table);
+output = MatrixPrinter.PrintGood(table);
+Console.WriteLine(output);
+File.WriteAllText("replacing lines in table.txt", output);
