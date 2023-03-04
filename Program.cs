@@ -26,13 +26,16 @@ void FillRandomNumbers(int[,] matrix, int min = 1, int max = 10)
   }
 }
 
-void PrintArray(int[,] NameArray)
+void Print(int[,] matrix)
 {
-  for (int i = 0; i < NameArray.GetLength(0); i++)
+  int row = matrix.GetLength(0);
+  int columns = matrix.GetLength(1);
+
+  for (int i = 0; i < row; i++)
   {
-    for (int j = 0; j < NameArray.GetLength(1); j++)
+    for (int j = 0; j < columns; j++)
     {
-      Console.Write(NameArray[i, j] + " ");
+      Console.Write($"{matrix[i, j],5} ");
     }
     Console.WriteLine();
   }
