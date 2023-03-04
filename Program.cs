@@ -41,17 +41,17 @@ void PrintBad(int[,] matrix)
   }
 }
 
-void NewArray(int[,] NameArray)
+void ReplacingLinesIn(int[,] matrix)
 {
-  int i, j, temp;
-  int n = NameArray.GetLength(0); // кол-во строк
-  int m = NameArray.GetLength(1); // кол-во столбцов
+  int temp;
+  int lastIndexRow = matrix.GetLength(0) - 1;
+  int columns = matrix.GetLength(1);
 
-  for (j = 0; j < m; j++) // перебираем столбцы
+  for (int i = 0; i < columns; i++)
   {
-    temp = NameArray[0, j];
-    NameArray[0, j] = NameArray[n - 1, j];
-    NameArray[n - 1, j] = temp;
+    temp = matrix[0, i];
+    matrix[0, i] = matrix[lastIndexRow, i];
+    matrix[lastIndexRow, i] = temp;
   }
 }
 
