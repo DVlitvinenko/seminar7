@@ -1,6 +1,6 @@
 ﻿int Input(string msg)
 {
-  int flag = false;
+  bool flag = false;
   int value = 0;
   while (!flag)
   {
@@ -55,13 +55,12 @@ void ReplacingLinesIn(int[,] matrix)
   }
 }
 
-int A = Input("Введите количество строк массива");
-int B = Input("Введите количество столбцов массива");
+int rows = Input("Введите количество строк массива");
+int columns = Input("Введите количество столбцов массива");
 
-int[,] matr = CreateArray(A, B);
-FillRandomNumbers(matr);
-PrintBad(matr);
-NewArray(matr);
+int[,] table = CreateArray(rows, columns);
+FillRandomNumbers(table);
+PrintBad(table);
+ReplacingLinesIn(table);
 Console.WriteLine();
-PrintBad(matr);
-
+PrintBad(table);
